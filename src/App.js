@@ -14,7 +14,7 @@ import Reviews from "./components/Reviews";
 // https://developers.themoviedb.org/3/movies/get-movie-credits - запрос информации о актёрском составе для страницы кинофильма.
 // https://developers.themoviedb.org/3/movies/get-movie-reviews - запрос обзоров для страницы кинофильма.
 
-const BASE_URL = "https://developers.themoviedb.org";
+// const BASE_URL = "https://developers.themoviedb.org";
 
 function App() {
   return (
