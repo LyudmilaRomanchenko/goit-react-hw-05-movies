@@ -1,10 +1,12 @@
 import { Switch, Route } from "react-router-dom";
 import AppBar from "./components/AppBar";
-import HomePage from "./components/HomePage";
-import MoviesPage from "./components/MoviesPage";
-import MovieDetailsPage from "./components/MovieDetailsPage";
-import Cast from "./components/Cast";
-import Reviews from "./components/Reviews";
+import HomePage from "./views/HomePage";
+import MoviesPage from "./views/MoviesPage";
+import MovieDetailsPage from "./views/MovieDetailsPage";
+import Cast from "./views/Cast";
+import Reviews from "./views/Reviews";
+
+import API from "./services/movies-api";
 
 //cdc3559cea174c9b75b98956c9a389b5
 
@@ -17,6 +19,12 @@ import Reviews from "./components/Reviews";
 // const BASE_URL = "https://developers.themoviedb.org";
 
 function App() {
+  console.log(
+    API.fetchTrending()
+      .then((a) => a)
+      .then((d) => d)
+  );
+
   return (
     <>
       <AppBar />

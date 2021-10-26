@@ -1,5 +1,5 @@
 function Reviews() {
-  return <h1>hhhhhhhh</h1>;
+  return <h1>reviews</h1>;
 }
 
 export default Reviews;
