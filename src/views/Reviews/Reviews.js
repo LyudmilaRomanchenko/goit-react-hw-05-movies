@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import API from "../../services/movies-api";
+import Spinner from "../../components/Spinner";
 
 function Reviews() {
   const { movieId } = useParams();
@@ -9,11 +10,15 @@ function Reviews() {
   console.log(movieId);
   const [reviews, setReviews] = useState("");
   const [error, setError] = useState("");
+  const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
+    setSpinner(true);
+
     API.fetchMovieReviews(movieId)
       .then((reviews) => setReviews(reviews))
-      .catch((error) => setError(error));
+      .catch((error) => setError(error))
+      .finally(() => setSpinner(false));
   }, [movieId]);
 
   console.log(reviews);
@@ -23,6 +28,7 @@ function Reviews() {
 
   return (
     <div>
+      {spinner && <Spinner />}
       {reviews && (
         <ul>
           {results.map(({ id, author, content }) => (
@@ -34,7 +40,9 @@ function Reviews() {
         </ul>
       )}
 
-      {!reviews && <h3>We don't have any reviews for this movie.</h3>}
+      {!reviews && !spinner && (
+        <h3>We don't have any reviews for this movie.</h3>
+      )}
     </div>
   );
 }

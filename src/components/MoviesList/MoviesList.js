@@ -5,6 +5,7 @@ function MoviesList({ movies }) {
   console.log(movies);
   const location = useLocation();
   console.log(location);
+
   return (
     <>
       {movies && (

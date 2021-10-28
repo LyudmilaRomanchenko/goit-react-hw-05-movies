@@ -9,7 +9,13 @@ function MovieCard({ movie }) {
 
   return (
     <div className={s.container}>
-      <img className={s.img} src={imgurl} alt={title} />
+      <img
+        className={s.img}
+        src={imgurl}
+        alt={title}
+        height="400"
+        width="300"
+      />
       <div className={s.description}>
         <h2>
           {title}({release_date ? release_date.split("-")[0] : ""})

@@ -1,26 +1,27 @@
-/* eslint-disable jsx-a11y/heading-has-content */
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-// import { Switch, NavLink, Link, Route, useRouteMatch } from "react-router-dom";
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
-// import { NavLink, Route, useRouteMatch } from "react-router-dom";
+import {
+  useHistory,
+  useLocation,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 import API from "../../services/movies-api";
 import MovieCard from "../../components/MovieCard";
-// import Cast from "../Cast";
-// import Reviews from "../Reviews";
 import AdditionalInform from "../../components/AdditionalInform";
 import Button from "../../components/Button";
+import Spinner from "../../components/Spinner";
 import s from "./MovieDetailsPage.module.css";
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState("");
   const [error, setError] = useState("");
+  const [spinner, setSpinner] = useState(false);
 
   const history = useHistory();
   console.log(history);
 
   const location = useLocation();
-  console.log(location.state.from);
+  // console.log(location.state.from);
 
   const { movieId } = useParams();
   console.log(movieId);
@@ -36,9 +37,12 @@ function MovieDetailsPage() {
   };
 
   useEffect(() => {
+    setSpinner(true);
+
     API.fetchMovieDetails(movieId)
       .then((film) => setMovie(film))
-      .catch((error) => setError(error));
+      .catch((error) => setError(error))
+      .finally(() => setSpinner(false));
   }, [movieId]);
 
   console.log(movie);
@@ -53,15 +57,15 @@ function MovieDetailsPage() {
   }
   return (
     <>
-      {movie ? (
+      {spinner && <Spinner />}
+      {movie && (
         <div className={s.container}>
           <Button title="Go back" onGoDack={onGoDack} />
           <MovieCard movie={movie} />
           <AdditionalInform path={path} url={url} />
         </div>
-      ) : (
-        "No movie description."
       )}
+      {!movie && !spinner && "No movie description."}
 
       {/* {movie.status_message && movie.status_message} */}
       <hr />

@@ -1,7 +1,11 @@
 // import { useParams } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { Switch, NavLink, Route } from "react-router-dom";
-import Cast from "../../views/Cast";
-import Reviews from "../../views/Reviews";
+import Spinner from "../Spinner";
+
+// Динамичкский импорт
+const Cast = lazy(() => import("../../views/Cast"));
+const Reviews = lazy(() => import("../../views/Reviews"));
 
 function AdditionalInform({ path, url }) {
   console.log(url);
@@ -18,23 +22,18 @@ function AdditionalInform({ path, url }) {
           <NavLink to={`${url}/reviews`}>Reviews</NavLink>
         </li>
       </ul>
-      <Route path={`${path}/cast`}>
-        <Cast />
-      </Route>
-
-      <Route path={`${path}/reviews`}>
-        <Reviews />
-      </Route>
-
-      {/* <Switch> */}
-      {/* <Route path={`${path}/cast`}>
-        <Cast />
-      </Route>
-
-      <Route path={`${path}/reviews`}>
-        <Reviews />
-      </Route> */}
-      {/* </Switch> */}
+      {/* Если делать вложеный маршрут согласно тз, то Route для компонентов Cast и
+      Reviews не срабатывает и по умолчанию перенаправляет на HomePage */}
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          <Route path={`/${path}/cast`}>
+            <Cast />
+          </Route>
+          <Route path={`${path}/reviews`}>
+            <Reviews />
+          </Route>
+        </Switch>
+      </Suspense>
     </div>
   );
 }

@@ -1,24 +1,22 @@
+import { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import Container from "./components/Container/Container";
 import AppBar from "./components/AppBar";
-import HomePage from "./views/HomePage";
-import MoviesPage from "./views/MoviesPage";
-import MovieDetailsPage from "./views/MovieDetailsPage";
-import Cast from "./views/Cast";
-import Reviews from "./views/Reviews";
+// import HomePage from "./views/HomePage";
+// import MoviesPage from "./views/MoviesPage";
+// import MovieDetailsPage from "./views/MovieDetailsPage";
+// import Cast from "./views/Cast";
+// import Reviews from "./views/Reviews";
 import API from "./services/movies-api";
-
 import "./App.css";
+import Spinner from "./components/Spinner";
 
-//cdc3559cea174c9b75b98956c9a389b5
-
-// https://developers.themoviedb.org/3/trending/get-trending - список самых популярных фильмов на сегодня для создания коллекции на главной странице.
-// https://developers.themoviedb.org/3/search/search-movies - поиск кинофильма по ключевому слову на странице фильмов.
-// https://developers.themoviedb.org/3/movies/get-movie-details - запрос полной информации о фильме для страницы кинофильма.
-// https://developers.themoviedb.org/3/movies/get-movie-credits - запрос информации о актёрском составе для страницы кинофильма.
-// https://developers.themoviedb.org/3/movies/get-movie-reviews - запрос обзоров для страницы кинофильма.
-
-// const BASE_URL = "https://developers.themoviedb.org";
+const HomePage = lazy(() => import("./views/HomePage"));
+const MoviesPage = lazy(() => import("./views/MoviesPage"));
+const MovieDetailsPage = lazy(() => import("./views/MovieDetailsPage"));
+//////////////////////////////////
+const Cast = lazy(() => import("./views/Cast"));
+const Reviews = lazy(() => import("./views/Reviews"));
 
 function App() {
   console.log(
@@ -30,31 +28,31 @@ function App() {
   return (
     <Container>
       <AppBar />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-
-        <Route path="/movies" exact>
-          <MoviesPage />
-        </Route>
-
-        <Route path="/movies/:movieId" exact>
-          <MovieDetailsPage />
-        </Route>
-
-        <Route path="/movies/:movieId/cast">
-          <Cast />
-        </Route>
-
-        <Route path="/movies/:movieId/reviews">
-          <Reviews />
-        </Route>
-
-        {/* <Route>
-          <HomePage />
-        </Route> */}
-      </Switch>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/movies" exact>
+            <MoviesPage />
+          </Route>
+          <Route path="/movies/:movieId" exact>
+            <MovieDetailsPage />
+          </Route>
+          {/* Если добавить Route для компонентов Cast и Reviews в файл App.js,
+          компоненты рендерятся соответственно с новой страницы, т.е. работают */}
+          <Route path="/movies/:movieId/cast">
+            <Cast />
+          </Route>
+          <Route path="/movies/:movieId/reviews">
+            <Reviews />
+          </Route>
+          {/* Если введен не коректный маршрут переходи на HomePage */}
+          <Route>
+            <HomePage />
+          </Route>
+        </Switch>
+      </Suspense>
     </Container>
   );
 }
