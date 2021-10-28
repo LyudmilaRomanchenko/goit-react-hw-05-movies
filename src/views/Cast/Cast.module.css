@@ -1,0 +1,14 @@
+.img {
+  display: block;
+  height: 150px;
+}
+
+.item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.description {
+  border-radius: 2px;
+  margin-left: 18px;
+}

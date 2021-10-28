@@ -1,12 +1,14 @@
 import { Switch, Route } from "react-router-dom";
+import Container from "./components/Container/Container";
 import AppBar from "./components/AppBar";
 import HomePage from "./views/HomePage";
 import MoviesPage from "./views/MoviesPage";
 import MovieDetailsPage from "./views/MovieDetailsPage";
 import Cast from "./views/Cast";
 import Reviews from "./views/Reviews";
-
 import API from "./services/movies-api";
+
+import "./App.css";
 
 //cdc3559cea174c9b75b98956c9a389b5
 
@@ -26,7 +28,7 @@ function App() {
   );
 
   return (
-    <>
+    <Container>
       <AppBar />
       <Switch>
         <Route path="/" exact>
@@ -49,11 +51,11 @@ function App() {
           <Reviews />
         </Route>
 
-        <Route>
+        {/* <Route>
           <HomePage />
-        </Route>
+        </Route> */}
       </Switch>
-    </>
+    </Container>
   );
 }
 

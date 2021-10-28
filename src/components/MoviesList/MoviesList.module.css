@@ -1,0 +1,12 @@
+.listItem {
+  text-decoration: none;
+  list-style: none;
+  color: rgb(93, 97, 96);
+  font-size: 16px;
+}
+
+.listItem:hover,
+.listItem:focus {
+  color: rgb(28, 59, 52);
+  font-size: 18px;
+}
