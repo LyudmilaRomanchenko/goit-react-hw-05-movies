@@ -41,16 +41,16 @@ function App() {
           </Route>
           {/* Если добавить Route для компонентов Cast и Reviews в файл App.js,
           компоненты рендерятся соответственно с новой страницы, т.е. работают */}
-          <Route path="/movies/:movieId/cast">
+          {/* <Route path="/movies/:movieId/cast">
             <Cast />
           </Route>
           <Route path="/movies/:movieId/reviews">
             <Reviews />
           </Route>
           {/* Если введен не коректный маршрут переходи на HomePage */}
-          <Route>
+          {/* <Route>
             <HomePage />
-          </Route>
+          </Route> */} 
         </Switch>
       </Suspense>
     </Container>
