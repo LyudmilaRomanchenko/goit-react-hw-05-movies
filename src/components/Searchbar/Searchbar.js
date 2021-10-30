@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import s from "./Searchbar.module.css";
 
@@ -48,6 +48,6 @@ function Searchbar({ onSubmit }) {
 
 export default Searchbar;
 
-// Searchbar.prototype = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
+Searchbar.prototype = {
+  onSubmit: PropTypes.func.isRequired,
+};

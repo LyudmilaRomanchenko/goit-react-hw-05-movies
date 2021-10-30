@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import s from "./MoviesPage.module.css";
 import API from "../../services/movies-api";
@@ -39,6 +40,7 @@ function MoviesPage() {
     // Если пустая строка запрос не делаем
     if (query === "" && !getQuery) {
       console.log("Пустая строка");
+
       return;
     }
     console.log(query);

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Container from "./components/Container/Container";
 import AppBar from "./components/AppBar";
 // import HomePage from "./views/HomePage";
@@ -42,6 +43,7 @@ function App() {
           </Route>
         </Switch>
       </Suspense>
+      <ToastContainer />
     </Container>
   );
 }

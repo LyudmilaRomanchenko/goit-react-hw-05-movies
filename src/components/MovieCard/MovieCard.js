@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import s from "./MovieCard.module.css";
 import defaultImg from "../../image/default_movie_img.jpg";
 
@@ -45,3 +46,7 @@ function MovieCard({ movie }) {
 }
 
 export default MovieCard;
+
+MovieCard.prototype = {
+  movies: PropTypes.object.isRequired,
+};

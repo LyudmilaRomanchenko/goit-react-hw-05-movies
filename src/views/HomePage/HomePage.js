@@ -4,7 +4,6 @@ import MoviesList from "../../components/MoviesList";
 import API from "../../services/movies-api";
 import s from "./HomePage.module.css";
 import Spinner from "../../components/Spinner";
-import defaultImg from "../../";
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
