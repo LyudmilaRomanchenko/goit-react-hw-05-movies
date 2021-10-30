@@ -25,11 +25,9 @@ function Reviews() {
 
   console.log(reviews);
 
-  const { results } = reviews;
+  const { results, total_pages } = reviews;
   console.log(results);
-
-  const messageOfUndef = [results].length === 1;
-  console.log(messageOfUndef);
+  console.log(total_pages);
 
   const message = "We don't have any reviews for this movie.";
 
@@ -47,7 +45,7 @@ function Reviews() {
         </ul>
       )}
 
-      {messageOfUndef && !spinner && message}
+      {!total_pages && !spinner && message}
     </div>
   );
 }
