@@ -14,9 +14,6 @@ import Spinner from "./components/Spinner";
 const HomePage = lazy(() => import("./views/HomePage"));
 const MoviesPage = lazy(() => import("./views/MoviesPage"));
 const MovieDetailsPage = lazy(() => import("./views/MovieDetailsPage"));
-//////////////////////////////////
-const Cast = lazy(() => import("./views/Cast"));
-const Reviews = lazy(() => import("./views/Reviews"));
 
 function App() {
   console.log(
@@ -36,21 +33,13 @@ function App() {
           <Route path="/movies" exact>
             <MoviesPage />
           </Route>
-          <Route path="/movies/:movieId" exact>
+          <Route path="/movies/:movieId">
             <MovieDetailsPage />
           </Route>
-          {/* Если добавить Route для компонентов Cast и Reviews в файл App.js,
-          компоненты рендерятся соответственно с новой страницы, т.е. работают */}
-          {/* <Route path="/movies/:movieId/cast">
-            <Cast />
-          </Route>
-          <Route path="/movies/:movieId/reviews">
-            <Reviews />
-          </Route>
           {/* Если введен не коректный маршрут переходи на HomePage */}
-          {/* <Route>
+          <Route>
             <HomePage />
-          </Route> */} 
+          </Route>
         </Switch>
       </Suspense>
     </Container>

@@ -11,12 +11,14 @@ function Reviews() {
   const [reviews, setReviews] = useState("");
   const [error, setError] = useState("");
   const [spinner, setSpinner] = useState(false);
+  console.log(error);
 
   useEffect(() => {
     setSpinner(true);
 
     API.fetchMovieReviews(movieId)
       .then((reviews) => setReviews(reviews))
+      .catch((error) => setError(error))
       .catch((error) => setError(error))
       .finally(() => setSpinner(false));
   }, [movieId]);
@@ -26,10 +28,15 @@ function Reviews() {
   const { results } = reviews;
   console.log(results);
 
+  const messageOfUndef = [results].length === 1;
+  console.log(messageOfUndef);
+
+  const message = "We don't have any reviews for this movie.";
+
   return (
     <div>
       {spinner && <Spinner />}
-      {reviews && (
+      {results && !spinner && (
         <ul>
           {results.map(({ id, author, content }) => (
             <li key={id}>
@@ -40,9 +47,7 @@ function Reviews() {
         </ul>
       )}
 
-      {!reviews && !spinner && (
-        <h3>We don't have any reviews for this movie.</h3>
-      )}
+      {messageOfUndef && !spinner && message}
     </div>
   );
 }

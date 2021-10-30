@@ -26,7 +26,7 @@ function AdditionalInform({ path, url }) {
       Reviews не срабатывает и по умолчанию перенаправляет на HomePage */}
       <Suspense fallback={<Spinner />}>
         <Switch>
-          <Route path={`/${path}/cast`}>
+          <Route path={`${path}/cast`}>
             <Cast />
           </Route>
           <Route path={`${path}/reviews`}>
