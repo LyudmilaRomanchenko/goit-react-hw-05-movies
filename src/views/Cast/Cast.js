@@ -32,6 +32,7 @@ function Cast() {
 
   return (
     <div>
+      {error && error.message}
       {spinner && !spinner && <Spinner />}
       {cast && (
         <ul>

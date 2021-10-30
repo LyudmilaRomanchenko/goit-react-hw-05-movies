@@ -1,6 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import s from "./Searchbar.module.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState("");
@@ -12,6 +14,17 @@ function Searchbar({ onSubmit }) {
 
   console.log(query);
 
+  const notify = () =>
+    toast("Enter your request!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   //   // Сабмит формы (запрос пользователя по поиску)
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +32,7 @@ function Searchbar({ onSubmit }) {
     // Если пустая строка запрос не передаем
     if (query.trim() === "") {
       console.log("Пустая строка");
-      return;
+      return notify();
     }
 
     // Передаем результат запроса

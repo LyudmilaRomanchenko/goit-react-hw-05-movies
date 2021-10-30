@@ -9,7 +9,7 @@ function HomePage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState("");
   const [spinner, setSpinner] = useState(false);
-  console.log(error);
+  console.log(error.message);
 
   useEffect(() => {
     setSpinner(true);
@@ -24,6 +24,7 @@ function HomePage() {
 
   return (
     <div>
+      {error && error.message}
       {movies && (
         <>
           <h2 className={s.title}>Trending today</h2>
@@ -31,8 +32,6 @@ function HomePage() {
           <MoviesList movies={movies} />
         </>
       )}
-
-      {/* {error && } */}
     </div>
   );
 }

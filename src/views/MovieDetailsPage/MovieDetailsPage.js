@@ -57,6 +57,7 @@ function MovieDetailsPage() {
   }
   return (
     <>
+      {error && error.message}
       {spinner && <Spinner />}
       {movie && (
         <div className={s.container}>
@@ -65,9 +66,7 @@ function MovieDetailsPage() {
           <AdditionalInform path={path} url={url} />
         </div>
       )}
-      {!movie && !spinner && "No movie description."}
-
-      {/* {movie.status_message && movie.status_message} */}
+      {/* {!movie && !spinner && "No movie description."} */}
       <hr />
     </>
   );

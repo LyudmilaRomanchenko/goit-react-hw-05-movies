@@ -35,6 +35,7 @@ function MoviesPage() {
     setQuery(query);
   }
 
+  // const notify = () => toast("Enter your request!");
   // Запрос пользователя по поиску
   useEffect(() => {
     // Если пустая строка запрос не делаем
@@ -43,6 +44,7 @@ function MoviesPage() {
 
       return;
     }
+
     console.log(query);
 
     setSpinner(true);

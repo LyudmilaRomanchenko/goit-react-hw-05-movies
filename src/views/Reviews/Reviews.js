@@ -19,7 +19,6 @@ function Reviews() {
     API.fetchMovieReviews(movieId)
       .then((reviews) => setReviews(reviews))
       .catch((error) => setError(error))
-      .catch((error) => setError(error))
       .finally(() => setSpinner(false));
   }, [movieId]);
 
@@ -33,6 +32,7 @@ function Reviews() {
 
   return (
     <div>
+      {error && error.message}
       {spinner && <Spinner />}
       {results && !spinner && (
         <ul>
