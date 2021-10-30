@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import s from "./MoviesList.module.css";
 
@@ -7,13 +7,15 @@ function MoviesList({ movies }) {
   const location = useLocation();
   console.log(location);
 
+  console.log(movies.length);
+
   return (
     <>
       {movies && (
         <ul className={s.list}>
           {movies.map((movie) => (
             <li key={movie.id} className={s.listItem}>
-              <NavLink
+              <Link
                 to={{
                   pathname: `/movies/${movie.id}`,
                   state: { from: location },
@@ -21,11 +23,12 @@ function MoviesList({ movies }) {
                 className={s.listItem}
               >
                 {movie.title ? movie.title : movie.name}
-              </NavLink>
+              </Link>
             </li>
           ))}
         </ul>
       )}
+      {/* {movies.length === 0 && "No movie with this title found!"} */}
     </>
   );
 }

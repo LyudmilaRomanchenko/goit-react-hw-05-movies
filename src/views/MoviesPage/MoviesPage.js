@@ -2,13 +2,14 @@
 /* eslint-disable no-unused-expressions */
 import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import s from "./MoviesPage.module.css";
 import API from "../../services/movies-api";
 import Searchbar from "../../components/Searchbar";
 import MoviesList from "../../components/MoviesList";
 import Spinner from "../../components/Spinner";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import MovieDetailsPage from "../MovieDetailsPage";
 
@@ -35,7 +36,8 @@ function MoviesPage() {
     setQuery(query);
   }
 
-  // const notify = () => toast("Enter your request!");
+  console.log(movies.length);
+
   // Запрос пользователя по поиску
   useEffect(() => {
     // Если пустая строка запрос не делаем
