@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { NavLink, Route, useRouteMatch } from "react-router-dom";
+// import { NavLink, Route, useRouteMatch } from "react-router-dom";
 import MoviesList from "../../components/MoviesList";
 import API from "../../services/movies-api";
 import s from "./HomePage.module.css";
 import Spinner from "../../components/Spinner";
+import defaultImg from "../../";
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState("");
   const [spinner, setSpinner] = useState(false);
+  console.log(error);
 
   useEffect(() => {
     setSpinner(true);
