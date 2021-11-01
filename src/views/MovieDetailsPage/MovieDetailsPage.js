@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   useHistory,
   useLocation,
@@ -22,6 +22,22 @@ function MovieDetailsPage() {
 
   const location = useLocation();
   // console.log(location.state.from);
+  console.log(location);
+
+  const currentRef = useRef(location.state?.from).current;
+  console.log(currentRef);
+
+  /////////////
+  // let a;
+  // if (location.propsSearch) {
+  //   // eslint-disable-next-line no-unused-vars
+  //   a = location.propsSearch;
+  // }
+  // console.log(a);
+  // const query = location.propsSearch;
+  // console.log(query);
+
+  //////////
 
   const { movieId } = useParams();
   console.log(movieId);
@@ -32,8 +48,9 @@ function MovieDetailsPage() {
   console.log(useRouteMatch());
 
   const onGoDack = () => {
-    history.push(location?.state?.from ?? "/");
+    history.push(currentRef ?? `/`);
     // history.goBack();
+    // history.go(-2);
   };
 
   useEffect(() => {

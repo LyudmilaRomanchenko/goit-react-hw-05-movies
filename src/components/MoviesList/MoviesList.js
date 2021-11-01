@@ -5,7 +5,8 @@ import s from "./MoviesList.module.css";
 function MoviesList({ movies }) {
   console.log(movies);
   const location = useLocation();
-  console.log(location);
+  console.log(location.search);
+  const a = location.search;
 
   console.log(movies.length);
 
